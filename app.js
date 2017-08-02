@@ -226,8 +226,14 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 		break;
 
 		case "service-areas":
-		
-		sendTextMessage(sender, `Hi ${fname}, thank you for yor interest to shop with honestbee! Our bees are working extra hard to open more location including your areas. We'll let you know once we are serviceable in that area!`);
+		let contexs = contexts.map(function(obj) {
+				let contextObjectss = {};
+				if(obj.name === "servicable-areas"){
+					let place = obj.parameters['any'];					
+				}
+			return contextObjectss;
+		});
+		sendTextMessage(sender, `Hi ${fname}, thank you for yor interest to shop with honestbee! Our bees are working extra hard to open more location including your areas. We'll let you know once we are serviceable in ${place}!`);
 
 		break;
 
