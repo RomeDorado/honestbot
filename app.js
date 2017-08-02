@@ -194,7 +194,7 @@ function handleEcho(messageId, appId, metadata) {
 }
 
 var clientName = "";
-
+var fname = "";
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	request({
 		uri: 'https://graph.facebook.com/v2.7/' + sender,
@@ -208,7 +208,7 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 			var user = JSON.parse(body);
 
 			clientName = user.first_name + ` ${user.last_name}`;
-
+			fname = user.first_name;
 		}
 	});
 
@@ -223,6 +223,12 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 			return contextObjects;
 		});
 		 	sendTextMessage(sender, responseText);
+		break;
+
+		case "service-areas":
+		
+		sendTextMessage(sender, `Hi ${fname}, thank you for yor interest to shop with honestbee! Our bees are working extra hard to open more location including your areas. We'll let you know once we are serviceable in that area!`);
+
 		break;
 
 		 case "feedback-action":		 
