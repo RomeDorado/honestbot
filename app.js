@@ -229,7 +229,7 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 		let contexs = contexts.map(function(obj) {
 				let contextObjectss = {};
 				if(obj.name === "servicable-areas"){
-					let place = obj.parameters['any'];					
+					var place = obj.parameters['any'];					
 				}
 			return contextObjectss;
 		});
