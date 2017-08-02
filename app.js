@@ -195,6 +195,7 @@ function handleEcho(messageId, appId, metadata) {
 
 var clientName = "";
 var fname = "";
+var place = "";
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	request({
 		uri: 'https://graph.facebook.com/v2.7/' + sender,
@@ -229,7 +230,7 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 		let contexs = contexts.map(function(obj) {
 				let contextObjectss = {};
 				if(obj.name === "servicable-areas"){
-					var place = obj.parameters['any'];					
+					place = obj.parameters['any'];					
 				}
 			return contextObjectss;
 		});
