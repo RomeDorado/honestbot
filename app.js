@@ -226,6 +226,26 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 		 	sendTextMessage(sender, responseText);
 		break;
 
+		case "get-info-rider":
+			let contex = contexts.map(function(obj){
+				let contextObject = {};
+				if(obj.name == "applicant-rider"){
+					let applicantName = obj.parameters['full_name'];
+					let applicantEmail = obj.parameters['email'];
+					let applicantNum = obj.parameters['contact_number'];
+					let emailContent = `Name of Applicant: ${applicantName} <br>
+										Applicant's Email: ${applicantEmail} <br>
+										Applicant's Contact Number: ${applicantNum}`;
+
+					sendEmailApplicationRider("Rider Applicant", emailContent, clientName)
+				}
+				return contextObject;
+			});
+			sendTextMessage(sender, responseText);
+
+			console.log(responseText);
+		break;
+
 		case "service-areas":
 		let contexs = contexts.map(function(obj) {
 				let contextObjectss = {};
@@ -1313,6 +1333,20 @@ function sendEmail(subject, content, name) {
 		console.log("NO ERROR SENDING EMAIL!");
 		}
 	});
+}
+
+function sendEmailApplicationRider(subject, content, name){
+	var api_key = 'key-2cc6875066bce7da401337300237471d';
+	var domain = 'sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org';
+	var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
+	var data = {
+	from: 'Inquiries <postmaster@sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org>',
+	to: 'patrickianco@gmail.com',
+	cc: 'romedorado@gmail.com',
+	subject: `New Rider Application`,
+	text: content
+	};
 }
 
 function sendEmailInquiry(subject, content, name) {
