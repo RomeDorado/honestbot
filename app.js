@@ -237,7 +237,9 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 Applicant's Email: ${applicantEmail}
 Applicant's Contact Number: ${applicantNum}`;
 				}
-				sendEmailApplicationRider("Rider Applicant", emailCont, clientName)
+				if(applicantName != null && applicantNum != null && applicantEmail != null){
+					sendEmailApplicationRider("Rider Applicant", emailCont, clientName)
+				}
 				return contextObject;
 			});
 			sendTextMessage(sender, responseText);
