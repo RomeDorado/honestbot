@@ -227,7 +227,7 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 		break;
 
 		case "get-info-rider":
-			let contex = contexts.map(function(obj){
+			let conte = contexts.map(function(obj){
 				let contextObject = {};
 				if(obj.name == "applicant-rider"){
 					let applicantName = obj.parameters['full_name'];
