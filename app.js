@@ -813,19 +813,19 @@ request({
 				let replies = [
 		{
 			"content_type": "text",
-			"title": "I'm a consumer",
+			"title": "I'm a Consumer",
 			"payload":"I'm a consumer"
 		},
 		{
 			"content_type": "text",
-			"title": "I'm a merchant",
+			"title": "I'm a Merchant",
 			"payload":"I'm a merchant"
 
 		},
 		{
 			"content_type": "text",
-			"title": "I'm a rider",
-			"payload":"I'm a rider"
+			"title": "I'm an Applicant",
+			"payload":"I'm an applicant"
 
 		}
 
