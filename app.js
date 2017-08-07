@@ -1347,6 +1347,13 @@ function sendEmailApplicationRider(subject, content, name){
 	subject: `New Rider Application`,
 	text: content
 	};
+
+	mailgun.messages().send(data, function (error, body) {
+	console.log(body);
+	if(!error){
+		console.log("NO ERROR SENDING EMAIL!");
+		}
+	});
 }
 
 function sendEmailInquiry(subject, content, name) {
