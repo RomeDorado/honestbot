@@ -233,12 +233,11 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 					let applicantName = obj.parameters['full_name'];
 					let applicantEmail = obj.parameters['email'];
 					let applicantNum = obj.parameters['contact_number'];
-					let emailContent = `Name of Applicant: ${applicantName}
+					var emailCont = `Name of Applicant: ${applicantName}
 Applicant's Email: ${applicantEmail}
 Applicant's Contact Number: ${applicantNum}`;
-
-					sendEmailApplicationRider("Rider Applicant", emailContent, clientName)
 				}
+				sendEmailApplicationRider("Rider Applicant", emailCont, clientName)
 				return contextObject;
 			});
 			sendTextMessage(sender, responseText);
