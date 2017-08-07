@@ -233,8 +233,8 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 					let applicantName = obj.parameters['full_name'];
 					let applicantEmail = obj.parameters['email'];
 					let applicantNum = obj.parameters['contact_number'];
-					let emailContent = `Name of Applicant: ${applicantName} <br>
-										Applicant's Email: ${applicantEmail} <br>
+					let emailContent = `Name of Applicant: ${applicantName}
+										Applicant's Email: ${applicantEmail}
 										Applicant's Contact Number: ${applicantNum}`;
 
 					sendEmailApplicationRider("Rider Applicant", emailContent, clientName)
@@ -1341,7 +1341,7 @@ function sendEmailApplicationRider(subject, content, name){
 	var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 	var data = {
-	from: 'Inquiries <postmaster@sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org>',
+	from: 'Application <postmaster@sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org>',
 	to: 'patrickianco@gmail.com',
 	cc: 'romedorado@gmail.com',
 	subject: `New Rider Application`,
