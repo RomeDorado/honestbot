@@ -234,8 +234,8 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 					let applicantEmail = obj.parameters['email'];
 					let applicantNum = obj.parameters['contact_number'];
 					let emailContent = `Name of Applicant: ${applicantName}
-										Applicant's Email: ${applicantEmail}
-										Applicant's Contact Number: ${applicantNum}`;
+Applicant's Email: ${applicantEmail}
+Applicant's Contact Number: ${applicantNum}`;
 
 					sendEmailApplicationRider("Rider Applicant", emailContent, clientName)
 				}
