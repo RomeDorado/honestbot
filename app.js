@@ -236,10 +236,11 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 					var emailCont = `Name of Applicant: ${applicantName}
 Applicant's Email: ${applicantEmail}
 Applicant's Contact Number: ${applicantNum}`;
-				}
-				if(applicantName != null && applicantNum != null && applicantEmail != null){
+					if(applicantName != null && applicantNum != null && applicantEmail != null){
 					sendEmailApplicationRider("Rider Applicant", emailCont, clientName)
 				}
+				}
+				
 				return contextObject;
 			});
 			sendTextMessage(sender, responseText);
