@@ -1405,7 +1405,10 @@ function sendEmailApplicationShopper(subject, content, name){
 	console.log(body);
 	if(!error){
 		console.log("NO ERROR SENDING EMAIL!");
-		}
+	}
+	else{
+		console.log(error);
+	}
 	});
 }
 
