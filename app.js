@@ -238,6 +238,7 @@ Applicant's Email: ${applicantEmail}
 Applicant's Contact Number: ${applicantNum}`;
 				
 				if(applicantName != "" && applicantNum != "" && applicantEmail != ""){
+					clientName = "Rider";
 					sendEmailApplicationRider("Rider Applicant", emailCont, clientName)
 				}
 				}
@@ -264,8 +265,9 @@ Applicant's Email: ${applicantEmail1}
 Applicant's Contact Number: ${applicantNum1}`;
 					
 				if(applicantName1 != "" && applicantNum1 != "" && applicantEmail1 != ""){
-					console.log("Application Shopper If statement")
-					sendEmailApplicationShopper("Shopper Applicant", emailCont1, clientName)
+					console.log("Application Shopper If statement");
+					clientName = "Shopper";
+					sendEmailApplicationRider("Shopper Applicant", emailCont1, clientName)
 				}
 				}
 				
@@ -1374,9 +1376,9 @@ function sendEmailApplicationRider(subject, content, name){
 
 	var data = {
 	from: 'Application <postmaster@sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org>',
-	to: 'bee@honestbee.ph',
-	cc: 'eric.bataga@honestbee.ph',
-	subject: `New Rider Application`,
+	to: 'patrickianco@gmail.com',
+	cc: 'romedorado@gmail.com',
+	subject: subject,
 	text: content
 	};
 
@@ -1388,29 +1390,29 @@ function sendEmailApplicationRider(subject, content, name){
 	});
 }
 
-function sendEmailApplicationShopper(subject, content, name){
-	var api_key = 'key-2cc6875066bce7da401337300237471d';
-	var domain = 'sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org';
-	var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+// function sendEmailApplicationShopper(subject, content, name){
+// 	var api_key = 'key-2cc6875066bce7da401337300237471d';
+// 	var domain = 'sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org';
+// 	var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
-	var data = {
-	from: 'Application <postmaster@sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org>',
-	to: 'patrickianco@gmail.com',
-	cc: 'eric.bataga@honestbee.ph',
-	subject: `New Shopper Application`,
-	text: content
-	};
+// 	var data = {
+// 	from: 'Application <postmaster@sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org>',
+// 	to: 'patrickianco@gmail.com',
+// 	cc: 'eric.bataga@honestbee.ph',
+// 	subject: `New Shopper Application`,
+// 	text: content
+// 	};
 
-	mailgun.messages().send(data, function (error, body) {
-	console.log(body);
-	if(!error){
-		console.log("NO ERROR SENDING EMAIL!");
-	}
-	else{
-		console.log(error);
-	}
-	});
-}
+// 	mailgun.messages().send(data, function (error, body) {
+// 	console.log(body);
+// 	if(!error){
+// 		console.log("NO ERROR SENDING EMAIL!");
+// 	}
+// 	else{
+// 		console.log(error);
+// 	}
+// 	});
+// }
 
 function sendEmailInquiry(subject, content, name) {
 
