@@ -252,6 +252,7 @@ Applicant's Contact Number: ${applicantNum}`;
 		break;
 
 		case "get-info-shopper":
+			console.log("get-info-shopper");
 			let cont2 = contexts.map(function(obj){
 				let contextObject = {};
 				if(obj.name == "applicant-shopper"){
@@ -263,6 +264,7 @@ Applicant's Email: ${applicantEmail1}
 Applicant's Contact Number: ${applicantNum1}`;
 					
 				if(applicantName1 != "" && applicantNum1 != "" && applicantEmail1 != ""){
+					console.log("Application Shopper If statement")
 					sendEmailApplicationShopper("Shopper Applicant", emailCont1, clientName)
 				}
 				}
