@@ -239,7 +239,7 @@ Applicant's Contact Number: ${applicantNum}`;
 				
 				if(applicantName != "" && applicantNum != "" && applicantEmail != ""){
 					clientName = "Rider";
-					sendEmailApplicationRider("Rider Applicant", emailCont, clientName)
+					sendEmailApplication("Rider Applicant", emailCont, clientName)
 				}
 				}
 				
@@ -267,7 +267,7 @@ Applicant's Contact Number: ${applicantNum1}`;
 				if(applicantName1 != "" && applicantNum1 != "" && applicantEmail1 != ""){
 					console.log("Application Shopper If statement");
 					clientName = "Shopper";
-					sendEmailApplicationRider("Shopper Applicant", emailCont1, clientName)
+					sendEmailApplication("Shopper Applicant", emailCont1, clientName)
 				}
 				}
 				
@@ -1369,15 +1369,15 @@ function sendEmail(subject, content, name) {
 	});
 }
 
-function sendEmailApplicationRider(subject, content, name){
+function sendEmailApplication(subject, content, name){
 	var api_key = 'key-2cc6875066bce7da401337300237471d';
 	var domain = 'sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org';
 	var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 	var data = {
 	from: 'Application <postmaster@sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org>',
-	to: 'patrickianco@gmail.com',
-	cc: 'romedorado@gmail.com',
+	to: 'bee@honestbee.ph',
+	cc: 'eric.bataga@honestbee.ph',
 	subject: subject,
 	text: content
 	};
