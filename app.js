@@ -249,6 +249,29 @@ Applicant's Contact Number: ${applicantNum}`;
 			console.log(responseText);
 		break;
 
+		case "get-info-shopper":
+			let cont2 = contexts.map(function(obj){
+				let contextObject = {};
+				if(obj.name == "applicant-shopper"){
+					let applicantName1 = obj.parameters['full_name'];
+					let applicantEmail1 = obj.parameters['email'];
+					let applicantNum1 = obj.parameters['contact_number'];
+					var emailCont1 = `Name of Applicant: ${applicantName1}
+Applicant's Email: ${applicantEmail1}
+Applicant's Contact Number: ${applicantNum1}`;
+				}
+				
+				if(applicantName1 != "" && applicantNum1 != "" && applicantEmail1 != ""){
+					sendEmailApplicationShopper("Shopper Applicant", emailCont1, clientName)
+				}
+				
+				return contextObject;
+			});
+			sendTextMessage(sender, responseText);
+
+			console.log(responseText);
+		break;
+
 		case "service-areas":
 		let contexs = contexts.map(function(obj) {
 				let contextObjectss = {};
@@ -1348,6 +1371,27 @@ function sendEmailApplicationRider(subject, content, name){
 	to: 'bee@honestbee.ph',
 	cc: 'eric.bataga@honestbee.ph',
 	subject: `New Rider Application`,
+	text: content
+	};
+
+	mailgun.messages().send(data, function (error, body) {
+	console.log(body);
+	if(!error){
+		console.log("NO ERROR SENDING EMAIL!");
+		}
+	});
+}
+
+function sendEmailApplicationShopper(subject, content, name){
+	var api_key = 'key-2cc6875066bce7da401337300237471d';
+	var domain = 'sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org';
+	var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
+	var data = {
+	from: 'Application <postmaster@sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org>',
+	to: 'patrickianco@gmail.com',
+	cc: 'eric.bataga@honestbee.ph',
+	subject: `New Shopper Application`,
 	text: content
 	};
 
