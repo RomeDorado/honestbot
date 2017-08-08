@@ -236,11 +236,13 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 					var emailCont = `Name of Applicant: ${applicantName}
 Applicant's Email: ${applicantEmail}
 Applicant's Contact Number: ${applicantNum}`;
-				}
 				
 				if(applicantName != "" && applicantNum != "" && applicantEmail != ""){
 					sendEmailApplicationRider("Rider Applicant", emailCont, clientName)
 				}
+				}
+				
+				
 				
 				return contextObject;
 			});
@@ -259,11 +261,13 @@ Applicant's Contact Number: ${applicantNum}`;
 					var emailCont1 = `Name of Applicant: ${applicantName1}
 Applicant's Email: ${applicantEmail1}
 Applicant's Contact Number: ${applicantNum1}`;
-				}
-				
+					
 				if(applicantName1 != "" && applicantNum1 != "" && applicantEmail1 != ""){
 					sendEmailApplicationShopper("Shopper Applicant", emailCont1, clientName)
 				}
+				}
+				
+				
 				
 				return contextObject;
 			});
