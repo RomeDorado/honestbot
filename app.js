@@ -237,18 +237,7 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 Applicant's Email: ${applicantEmail}
 Applicant's Contact Number: ${applicantNum}`;
 				}
-				request({
-					uri: 'https://graph.facebook.com/v2.7/' + sender,
-					qs: {
-						access_token: config.FB_PAGE_TOKEN
-					}
-
-					}, function (error, response, body) {
-						if (!error && response.statusCode == 200) {
-
-							var user = JSON.parse(body);
-							clientName = user.first_name;
-					}
+				
 				if(applicantName != "" && applicantNum != "" && applicantEmail != ""){
 					sendEmailApplicationRider("Rider Applicant", emailCont, clientName)
 				}
@@ -1356,8 +1345,8 @@ function sendEmailApplicationRider(subject, content, name){
 
 	var data = {
 	from: 'Application <postmaster@sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org>',
-	to: 'patrickianco@gmail.com',
-	cc: 'romedorado@gmail.com',
+	to: 'bee@honestbee.ph',
+	cc: 'eric.bataga@honestbee.ph',
 	subject: `New Rider Application`,
 	text: content
 	};
