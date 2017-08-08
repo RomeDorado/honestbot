@@ -1358,7 +1358,7 @@ function sendEmailApplicationRider(subject, content, name){
 	from: 'Application <postmaster@sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org>',
 	to: 'patrickianco@gmail.com',
 	cc: 'romedorado@gmail.com',
-	subject: `New Rider Application from ${name}`,
+	subject: `New Rider Application`,
 	text: content
 	};
 
