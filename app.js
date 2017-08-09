@@ -296,7 +296,7 @@ Applicant's Contact Number: ${applicantNum1}`;
 							  'Alabang', 'Las Pinas'];
 		if(availableAreas.indexOf(place) > -1){
 			//Place is already available for service
-			sendTextMessage(sender, `Hi ${name}, ${place} is already in our serviceable areas!`);
+			sendTextMessage(sender, `Hi ${fname}, ${place} is already in our serviceable areas!`);
 		}
 		else{
 			sendTextMessage(sender, `Hi ${fname}, thank you for yor interest to shop with honestbee! Our bees are working extra hard to open more location including your areas. We'll let you know once we are serviceable in ${place}!`);
