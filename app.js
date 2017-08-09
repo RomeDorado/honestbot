@@ -882,7 +882,7 @@ request({
 				console.log("FB user: %s %s, %s",
 					user.first_name, user.last_name, user.gender);
 
-				txtmessage = "Hi " + user.first_name + '! I\'m honestbee bot, your all-in-one personal concierge and delivery app. 🐝  To continue, are you a consumer, a merchant, or a rider?”';
+				txtmessage = "Hi " + user.first_name + '! I\'m honestbee bot, your all-in-one personal concierge and delivery app. 🐝  To continue, are you a consumer, a merchant, or an applicant?”';
 				let replies = [
 		{
 			"content_type": "text",
