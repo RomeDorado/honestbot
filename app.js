@@ -284,7 +284,7 @@ Applicant's Contact Number: ${applicantNum1}`;
 		let contexs = contexts.map(function(obj) {
 				let contextObjectss = {};
 				if(obj.name === "servicable-areas"){
-					place = obj.parameters['any'];					
+					place = obj.parameters['city-name'];					
 				}
 			return contextObjectss;
 		});
