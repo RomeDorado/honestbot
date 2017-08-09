@@ -304,7 +304,7 @@ Applicant's Contact Number: ${applicantNum1}`;
 		break;
 
 		case 'coupons-action':
-			sendTextMessage(sender, `Hi ${name}, thank you for contacting honestbee! Your First Time User coupon is automatically applied to your first order. You can also find it in your account wallet.`);
+			sendTextMessage(sender, `Hi ${fname}, thank you for contacting honestbee! Your First Time User coupon is automatically applied to your first order. You can also find it in your account wallet.`);
 			sendTextMessage(sender, 'For more information on how to access your account wallet, kindly click this link http://blog.honestbee.com/how-to-use-a-coupon-code-on-honestbee/');
 		break;
 
