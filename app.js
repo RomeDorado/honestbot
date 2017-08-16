@@ -193,8 +193,8 @@ function handleEcho(messageId, appId, metadata) {
 	console.log("Received echo for message %s and app %d with metadata %s", messageId, appId, metadata);
 }
 
-// var clientName = "";
-// var fname = "";
+ var clientName = "";
+ var fname = "";
  var place = "";
 var counter = 0;
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
@@ -209,8 +209,8 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 
 			var user = JSON.parse(body);
 
-			let clientName = user.first_name + ` ${user.last_name}`;
-			let fname = user.first_name;
+			var clientName = user.first_name + ` ${user.last_name}`;
+			var fname = user.first_name;
 		}
 	});
 	
