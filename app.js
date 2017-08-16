@@ -226,16 +226,93 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 		 	sendTextMessage(sender, responseText);
 		break;
 
+		case "get-info-rider":
+			let cont1 = contexts.map(function(obj){
+				let contextObject = {};
+				if(obj.name == "applicant-rider"){
+					let applicantName = obj.parameters['full_name'];
+					let applicantEmail = obj.parameters['email'];
+					let applicantNum = obj.parameters['contact_number'];
+					var emailCont = `Name of Applicant: ${applicantName}
+Applicant's Email: ${applicantEmail}
+Applicant's Contact Number: ${applicantNum}`;
+				
+				if(applicantName != "" && applicantNum != "" && applicantEmail != ""){
+					clientName = "Rider";
+					sendEmailApplication("Rider Applicant", emailCont, clientName)
+				}
+				}
+				
+				
+				
+				return contextObject;
+			});
+			sendTextMessage(sender, responseText);
+
+			console.log(responseText);
+		break;
+
+		case "get-info-shopper":
+			console.log("get-info-shopper");
+			let cont2 = contexts.map(function(obj){
+				let contextObject = {};
+				if(obj.name == "applicant-shopper"){
+					let applicantName1 = obj.parameters['full_name'];
+					let applicantEmail1 = obj.parameters['email'];
+					let applicantNum1 = obj.parameters['contact_number'];
+					var emailCont1 = `Name of Applicant: ${applicantName1}
+Applicant's Email: ${applicantEmail1}
+Applicant's Contact Number: ${applicantNum1}`;
+					
+				if(applicantName1 != "" && applicantNum1 != "" && applicantEmail1 != ""){
+					console.log("Application Shopper If statement");
+					clientName = "Shopper";
+					sendEmailApplication("Shopper Applicant", emailCont1, clientName)
+				}
+				}
+				
+				
+				
+				return contextObject;
+			});
+			sendTextMessage(sender, responseText);
+
+			console.log(responseText);
+		break;
+
 		case "service-areas":
 		let contexs = contexts.map(function(obj) {
 				let contextObjectss = {};
 				if(obj.name === "servicable-areas"){
-					place = obj.parameters['any'];					
+					place = obj.parameters['city-name'];					
 				}
 			return contextObjectss;
 		});
+<<<<<<< HEAD
 		sendTextMessage(sender, `Hi ${fname}, thank you for yor interest to shop with honestbee! Our bees are working extra hard to open more location including your area. We'll let you know once we are serviceable in ${place}!`);
+=======
+		let availableAreas = ['Makati', 'Taguig', 
+							  'Pasig', 'Manila',
+							  'Mandaluyong', 'Quezon City',
+							  'Marikina', 'Antipolo',
+							  'Rizal', 'Paranaque',
+							  'Alabang', 'Las Pinas'];
+		if(availableAreas.indexOf(place) > -1){
+			//Place is already available for service
+			sendTextMessage(sender, `Hi ${fname}, ${place} is already in our serviceable areas!`);
+		}
+		else{
+			sendTextMessage(sender, `Hi ${fname}, thank you for yor interest to shop with honestbee! Our bees are working extra hard to open more location including your areas. We'll let you know once we are serviceable in ${place}!`);
+		}
+		break;
+>>>>>>> 13e5abccc4d7f701bca00b3dda86340ebe31524b
 
+		case 'coupons-action':
+			sendTextMessage(sender, `Hi ${fname}, thank you for contacting honestbee! Your First Time User coupon is automatically applied to your first order. You can also find it in your account wallet.`);
+			setTimeout(function(){
+				sendTextMessage(sender, 'For more information on how to access your account wallet, kindly click this link http://blog.honestbee.com/how-to-use-a-coupon-code-on-honestbee/');
+			},2000);
+			
 		break;
 
 		 case "feedback-action":		 
@@ -258,6 +335,10 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 				consumerquickreply(sender, action, responseText, contexts);
 				},2000);
 		 break;
+
+		//  case "input.unknowns":
+		// 	sendTextMessage(sender, `Hi ${fname}! I am honestbee bot, kindly provide us the details of your query and we will get back to you as soon as possible.`)
+		//  break;
 
 		 case "enterEmail":
 			var cont = contexts.map(function(obj) {
@@ -809,23 +890,23 @@ request({
 				console.log("FB user: %s %s, %s",
 					user.first_name, user.last_name, user.gender);
 
-				txtmessage = "Hi " + user.first_name + '! I\'m honestbee bot, your all-in-one personal concierge and delivery app. 🐝  To continue, are you a consumer, a merchant, or a rider?”';
+				txtmessage = "Hi " + user.first_name + '! I\'m honestbee bot, your all-in-one personal concierge and delivery app. 🐝  To continue, are you a consumer, a merchant, or an applicant?”';
 				let replies = [
 		{
 			"content_type": "text",
-			"title": "I'm a consumer",
+			"title": "I'm a Consumer",
 			"payload":"I'm a consumer"
 		},
 		{
 			"content_type": "text",
-			"title": "I'm a merchant",
+			"title": "I'm a Merchant",
 			"payload":"I'm a merchant"
 
 		},
 		{
 			"content_type": "text",
-			"title": "I'm a rider",
-			"payload":"I'm a rider"
+			"title": "I'm an Applicant",
+			"payload":"I'm an applicant"
 
 		}
 
@@ -1314,6 +1395,51 @@ function sendEmail(subject, content, name) {
 		}
 	});
 }
+
+function sendEmailApplication(subject, content, name){
+	var api_key = 'key-2cc6875066bce7da401337300237471d';
+	var domain = 'sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org';
+	var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
+	var data = {
+	from: 'Application <postmaster@sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org>',
+	to: 'bee@honestbee.ph',
+	cc: 'eric.bataga@honestbee.ph',
+	subject: subject,
+	text: content
+	};
+
+	mailgun.messages().send(data, function (error, body) {
+	console.log(body);
+	if(!error){
+		console.log("NO ERROR SENDING EMAIL!");
+		}
+	});
+}
+
+// function sendEmailApplicationShopper(subject, content, name){
+// 	var api_key = 'key-2cc6875066bce7da401337300237471d';
+// 	var domain = 'sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org';
+// 	var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
+// 	var data = {
+// 	from: 'Application <postmaster@sandboxb18d41951b2a4b58a7f2bcdc7a7048f8.mailgun.org>',
+// 	to: 'patrickianco@gmail.com',
+// 	cc: 'eric.bataga@honestbee.ph',
+// 	subject: `New Shopper Application`,
+// 	text: content
+// 	};
+
+// 	mailgun.messages().send(data, function (error, body) {
+// 	console.log(body);
+// 	if(!error){
+// 		console.log("NO ERROR SENDING EMAIL!");
+// 	}
+// 	else{
+// 		console.log(error);
+// 	}
+// 	});
+// }
 
 function sendEmailInquiry(subject, content, name) {
 
