@@ -198,21 +198,7 @@ function handleEcho(messageId, appId, metadata) {
 // var place = "";
 var counter = 0;
 function handleApiAiAction(sender, action, responseText, contexts, parameters, clientName, fname, place) {
-	request({
-		uri: 'https://graph.facebook.com/v2.7/' + sender,
-		qs: {
-			access_token: config.FB_PAGE_TOKEN
-		}
-
-	}, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-
-			var user = JSON.parse(body);
-
-			clientName = user.first_name + ` ${user.last_name}`;
-			fname = user.first_name;
-		}
-	});
+	
 	
 	switch (action) {
 		case "input.unknowns":
@@ -511,6 +497,21 @@ function handleApiAiResponse(sender, response) {
 	var fname = "";
 	var place = "";
 	sendTypingOff(sender);
+	request({
+		uri: 'https://graph.facebook.com/v2.7/' + sender,
+		qs: {
+			access_token: config.FB_PAGE_TOKEN
+		}
+
+	}, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+
+			var user = JSON.parse(body);
+
+			clientName = user.first_name + ` ${user.last_name}`;
+			fname = user.first_name;
+		}
+	});
 
 	if (isDefined(messages) && (messages.length == 1 && messages[0].type != 0 || messages.length > 1) && action != "input.unknown"
 	&& action != "enterEmail"){
