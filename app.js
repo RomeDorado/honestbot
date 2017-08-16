@@ -505,7 +505,7 @@ function handleApiAiResponse(sender, response) {
 	let action = response.result.action;
 	let contexts = response.result.contexts;
 	let parameters = response.result.parameters;
-	var counter = 0;
+	global.counter = 0;
 
 	sendTypingOff(sender);
 
