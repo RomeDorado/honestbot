@@ -196,6 +196,7 @@ function handleEcho(messageId, appId, metadata) {
 var clientName = "";
 var fname = "";
 var place = "";
+var counter = 0;
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	request({
 		uri: 'https://graph.facebook.com/v2.7/' + sender,
@@ -212,7 +213,7 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 			fname = user.first_name;
 		}
 	});
-	var counter = 0;
+	
 	switch (action) {
 		case "input.unknowns":
 		counter++;
