@@ -332,9 +332,9 @@ Applicant's Contact Number: ${applicantNum1}`;
 				},2000);
 		 break;
 
-		 case "input.unknowns":
-			sendTextMessage(sender, `Hi ${fname}! I am honestbee bot, kindly provide us the details of your query and we will get back to you as soon as possible.`)
-		 break;
+		//  case "input.unknowns":
+		// 	sendTextMessage(sender, `Hi ${fname}! I am honestbee bot, kindly provide us the details of your query and we will get back to you as soon as possible.`)
+		//  break;
 
 		 case "enterEmail":
 			var cont = contexts.map(function(obj) {
