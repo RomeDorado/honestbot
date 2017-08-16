@@ -552,6 +552,22 @@ function handleApiAiResponse(sender, response) {
 		sendTextMessage(sender, "I'm not sure what you want. Can you be more specific?");
 	} else if (isDefined(action)) {
 		console.log('this is the action' + action);
+		request({
+		uri: 'https://graph.facebook.com/v2.7/' + sender,
+		qs: {
+			access_token: config.FB_PAGE_TOKEN
+		}
+
+	}, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+
+			var user = JSON.parse(body);
+
+			var clientName = user.first_name + ` ${user.last_name}`;
+			var fname = user.first_name;
+		}
+	});
+
 		handleApiAiAction(sender, action, responseText, contexts, parameters, clientName, fname);
 	} else if (isDefined(responseData) && isDefined(responseData.facebook)) {
 		try {
