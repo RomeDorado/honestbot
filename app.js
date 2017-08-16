@@ -508,8 +508,8 @@ function handleApiAiResponse(sender, response) {
 
 			var user = JSON.parse(body);
 
-			let clientName = user.first_name + ` ${user.last_name}`;
-			let fname = user.first_name;
+			var clientName = user.first_name + ` ${user.last_name}`;
+			var fname = user.first_name;
 		}
 	});
 
