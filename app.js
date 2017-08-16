@@ -212,8 +212,17 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 			fname = user.first_name;
 		}
 	});
-
+	var counter = 0;
 	switch (action) {
+		case "input.unknowns":
+		counter++;
+
+		if(counter % 2 == 0){
+			
+		}else{
+			sendTextMessage(sender, `Hi ${fname}, I am honestbee bot, kindly provide us the details of your query and we will get back to you as soon as possible.`);	
+		}
+		break;
 		case "send-message":
 		let contex = contexts.map(function(obj) {
 				let contextObjects = {};
@@ -288,9 +297,6 @@ Applicant's Contact Number: ${applicantNum1}`;
 				}
 			return contextObjectss;
 		});
-<<<<<<< HEAD
-		sendTextMessage(sender, `Hi ${fname}, thank you for yor interest to shop with honestbee! Our bees are working extra hard to open more location including your area. We'll let you know once we are serviceable in ${place}!`);
-=======
 		let availableAreas = ['Makati', 'Taguig', 
 							  'Pasig', 'Manila',
 							  'Mandaluyong', 'Quezon City',
@@ -305,7 +311,6 @@ Applicant's Contact Number: ${applicantNum1}`;
 			sendTextMessage(sender, `Hi ${fname}, thank you for yor interest to shop with honestbee! Our bees are working extra hard to open more location including your areas. We'll let you know once we are serviceable in ${place}!`);
 		}
 		break;
->>>>>>> 13e5abccc4d7f701bca00b3dda86340ebe31524b
 
 		case 'coupons-action':
 			sendTextMessage(sender, `Hi ${fname}, thank you for contacting honestbee! Your First Time User coupon is automatically applied to your first order. You can also find it in your account wallet.`);
@@ -355,7 +360,7 @@ Applicant's Contact Number: ${applicantNum1}`;
 		 break;
 		default:
 			//unhandled action, just send back the text
-			sendTextMessage(sender, responseText);
+			//sendTextMessage(sender, responseText);
 
 	}
 }
