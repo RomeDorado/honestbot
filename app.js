@@ -216,7 +216,7 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	switch (action) {
 		case "input.unknowns":
 		counter++;
-
+		console.log(counter + "this is the counter");
 		if(counter % 2 == 0){
 			
 		}else{
