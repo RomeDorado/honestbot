@@ -196,7 +196,8 @@ function handleEcho(messageId, appId, metadata) {
 var clientName = "";
 var fname = "";
 var place = "";
-function handleApiAiAction(sender, action, responseText, contexts, parameters, counter) {
+var counter = 0;
+function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	request({
 		uri: 'https://graph.facebook.com/v2.7/' + sender,
 		qs: {
@@ -505,7 +506,7 @@ function handleApiAiResponse(sender, response) {
 	let action = response.result.action;
 	let contexts = response.result.contexts;
 	let parameters = response.result.parameters;
-	global.counter = 0;
+	var counter = 0;
 
 	sendTypingOff(sender);
 
@@ -517,7 +518,7 @@ function handleApiAiResponse(sender, response) {
 		let timeout = 0;
 		
 
-		handleApiAiAction(sender, action, responseText, contexts, parameters, counter);
+		handleApiAiAction(sender, action, responseText, contexts, parameters);
 		for (var i = 0; i < messages.length; i++) {
 
 			if ( previousType == 1 && (messages[i].type != 1 || i == messages.length - 1)) {
@@ -548,7 +549,7 @@ function handleApiAiResponse(sender, response) {
 		sendTextMessage(sender, "I'm not sure what you want. Can you be more specific?");
 	} else if (isDefined(action)) {
 		console.log('this is the action' + action);
-		handleApiAiAction(sender, action, responseText, contexts, parameters, counter);
+		handleApiAiAction(sender, action, responseText, contexts, parameters);
 	} else if (isDefined(responseData) && isDefined(responseData.facebook)) {
 		try {
 			console.log('Response as formatted message' + responseData.facebook);
