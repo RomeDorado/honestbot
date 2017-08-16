@@ -193,9 +193,9 @@ function handleEcho(messageId, appId, metadata) {
 	console.log("Received echo for message %s and app %d with metadata %s", messageId, appId, metadata);
 }
 
- var clientName = "";
- var fname = "";
- var place = "";
+var clientName = "";
+var fname = "";
+var place = "";
 var counter = 0;
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	request({
@@ -209,8 +209,8 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 
 			var user = JSON.parse(body);
 
-			var clientName = user.first_name + ` ${user.last_name}`;
-			var fname = user.first_name;
+			clientName = user.first_name + ` ${user.last_name}`;
+			fname = user.first_name;
 		}
 	});
 	
@@ -506,26 +506,8 @@ function handleApiAiResponse(sender, response) {
 	let action = response.result.action;
 	let contexts = response.result.contexts;
 	let parameters = response.result.parameters;
-	var counter = 0;
-	// let clientName = "";
-	// let fname = "";
-	// let place = "";
+
 	sendTypingOff(sender);
-	request({
-		uri: 'https://graph.facebook.com/v2.7/' + sender,
-		qs: {
-			access_token: config.FB_PAGE_TOKEN
-		}
-
-	}, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-
-			var user = JSON.parse(body);
-
-			let clientName = user.first_name + ` ${user.last_name}`;
-			let fname = user.first_name;
-		}
-	});
 
 	if (isDefined(messages) && (messages.length == 1 && messages[0].type != 0 || messages.length > 1) && action != "input.unknown"
 	&& action != "enterEmail"){
@@ -533,7 +515,6 @@ function handleApiAiResponse(sender, response) {
 		let previousType ;
 		let cardTypes = [];
 		let timeout = 0;
-		
 
 		handleApiAiAction(sender, action, responseText, contexts, parameters);
 		for (var i = 0; i < messages.length; i++) {
